@@ -30,12 +30,10 @@ SESSION_ID = "graphacademy"
 
 
 async def main():
-    # TODO 1: Open a MemoryClient using `async with`
-    #
-    # TODO 2: Store one message with memory.short_term.add_message(), passing
-    #         SESSION_ID, the role "user", and any content you like.
-    #         Print the id of the message it returns.
-    pass
-
+    async with MemoryClient(settings) as memory:
+        message = await memory.short_term.add_message(
+            SESSION_ID, "user", "I am learning Neo4j and GraphRAG."
+        )
+        print(f"Stored message {message.id} in session {SESSION_ID}")
 
 asyncio.run(main())
